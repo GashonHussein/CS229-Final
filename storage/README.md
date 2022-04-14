@@ -6,7 +6,7 @@
 
 `node main`
 
-## Dev Abstraction
+## Dev Abstraction (get_images.py)
 
 `get_images()` this function returns a dict of image frames associated with their drowsiness classification
 
