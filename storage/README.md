@@ -1,10 +1,8 @@
 # Storage
 
-### Init
-
 `npm i`
 
-`node main`
+`node index`
 
 ## Dev Abstraction (get_images.py)
 
