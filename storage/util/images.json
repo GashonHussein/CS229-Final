@@ -1,5 +1,12 @@
 {
-  "classification_0": {},
+  "classification_0": {
+    "0/ajrhx.png": {
+      "folder": "0",
+      "imgRef": "0/ajrhx.png",
+      "mediaRef": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/0%2Fajrhx.png?generation=1649910270780776&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/0/ajrhx.png"
+    }
+  },
   "classification_1": {},
   "classification_2": {},
   "classification_3": {},
