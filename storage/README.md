@@ -1,5 +1,7 @@
 # Storage
 
+### Init
+
 `npm i`
 
 `node main`
