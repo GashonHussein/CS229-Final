@@ -1,0 +1,6 @@
+runtime: nodejs
+env: flex
+
+env_variables:
+  GCLOUD_STORAGE_BUCKET: cs-229-storage-bucket
+  GOOGLE_APPLICATION_CREDENTIALS: ./credentials/config.json
