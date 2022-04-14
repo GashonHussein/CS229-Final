@@ -1,12 +1,14 @@
 # Storage
 
-`npm i`
+## Dev Abstraction
 
-`node index`
+### get_images_url() (recommended)
 
-## Dev Abstraction (get_images.py)
+`get_images_url(classification)` returns an array of img_ref urls associated with the drowsiness classification argument
 
-`get_images(classification)` this function returns a dict of image frames associated with their drowsiness classification
+### get_images()
+
+`get_images(classification)` returns more info than `get_images_url()`. Returns a dict (url, media_ref, and folder) of image frames associated with their drowsiness classification
 
 ## General
 

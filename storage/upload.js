@@ -22,16 +22,16 @@ const updateJSON = (images) => {
 };
 
 const handleUpload = (data) => {
-  const uri = `https://storage.googleapis.com/${process.env.GCLOUD_STORAGE_BUCKET}/${data.imgRef}`;
+  const uri = `https://storage.googleapis.com/${process.env.GCLOUD_STORAGE_BUCKET}/${data.img_ref}`;
 
   console.log({ ...data, uri: uri });
-  images[`classification_${data.folder}`][data.imgRef] = { ...data, uri: uri };
+  images[`classification_${data.folder}`][data.img_reg] = { ...data, uri: uri };
   updateJSON(images);
 };
 
 const upload = (path, classification) => {
   const options = {
-    destination: `${classification}/${randomHash()}.png`,
+    destination: `drowsiness/${classification}/${randomHash()}.png`,
     public: true,
     resumable: true,
     metadata: {
@@ -43,7 +43,7 @@ const upload = (path, classification) => {
   bucket
     .upload(path, options)
     .then((res) =>
-      handleUpload({ folder: classification, imgRef: res[1].name, mediaRef: res[1].mediaLink })
+      handleUpload({ folder: classification, img_ref: res[1].name, media_ref: res[1].mediaLink })
     )
     .catch((err) => console.log("error", err));
   return;
