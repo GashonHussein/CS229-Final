@@ -15,4 +15,5 @@ const main = (folder) => {
   });
 };
 
-main("0");
+// e.g
+//main("0");
