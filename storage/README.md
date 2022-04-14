@@ -1,6 +1,6 @@
 # Storage
 
-## Dev Abstraction
+## Dev Abstraction (get_images.py)
 
 ### get_images_url() (recommended)
 
