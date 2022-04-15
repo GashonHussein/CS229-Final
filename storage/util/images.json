@@ -1,13 +1,90 @@
 {
-  "classification_0": {},
-  "classification_1": {},
-  "classification_2": {},
-  "classification_3": {},
-  "classification_4": {},
-  "classification_5": {},
-  "classification_6": {},
-  "classification_7": {},
-  "classification_8": {},
-  "classification_9": {},
-  "classification_10": {}
+  "classification_0": {
+    "undefined": {
+      "folder": "0",
+      "img_ref": "drowsiness/0/nxxo5.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F0%2Fnxxo5.png?generation=1649992794235422&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/0/nxxo5.png"
+    }
+  },
+  "classification_1": {
+    "undefined": {
+      "folder": "1",
+      "img_ref": "drowsiness/1/c72usok.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F1%2Fc72usok.png?generation=1649992794228295&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/1/c72usok.png"
+    }
+  },
+  "classification_2": {
+    "undefined": {
+      "folder": "2",
+      "img_ref": "drowsiness/2/zwvvj9.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F2%2Fzwvvj9.png?generation=1649992790364386&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/2/zwvvj9.png"
+    }
+  },
+  "classification_3": {
+    "undefined": {
+      "folder": "3",
+      "img_ref": "drowsiness/3/risyy.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F3%2Frisyy.png?generation=1649992795879479&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/3/risyy.png"
+    }
+  },
+  "classification_4": {
+    "undefined": {
+      "folder": "4",
+      "img_ref": "drowsiness/4/57u1kb.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F4%2F57u1kb.png?generation=1649992790411021&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/4/57u1kb.png"
+    }
+  },
+  "classification_5": {
+    "undefined": {
+      "folder": "5",
+      "img_ref": "drowsiness/5/76e2po.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F5%2F76e2po.png?generation=1649992784473361&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/5/76e2po.png"
+    }
+  },
+  "classification_6": {
+    "undefined": {
+      "folder": "6",
+      "img_ref": "drowsiness/6/ggh8mk.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F6%2Fggh8mk.png?generation=1649992790410890&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/6/ggh8mk.png"
+    }
+  },
+  "classification_7": {
+    "undefined": {
+      "folder": "7",
+      "img_ref": "drowsiness/7/9rv4kw.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F7%2F9rv4kw.png?generation=1649992791299325&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/7/9rv4kw.png"
+    }
+  },
+  "classification_8": {
+    "undefined": {
+      "folder": "8",
+      "img_ref": "drowsiness/8/igq0yu.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F8%2Figq0yu.png?generation=1649992790407234&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/8/igq0yu.png"
+    }
+  },
+  "classification_9": {
+    "undefined": {
+      "folder": "9",
+      "img_ref": "drowsiness/9/b4eb5g.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F9%2Fb4eb5g.png?generation=1649992790396847&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/9/b4eb5g.png"
+    }
+  },
+  "classification_10": {
+    "undefined": {
+      "folder": "10",
+      "img_ref": "drowsiness/10/u8dt.png",
+      "media_ref": "https://storage.googleapis.com/download/storage/v1/b/cs-229-storage-bucket/o/drowsiness%2F10%2Fu8dt.png?generation=1649992790309761&alt=media",
+      "uri": "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/10/u8dt.png"
+    }
+  }
 }

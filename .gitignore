@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
 # assets
-./storage/assets
+storage/assets/
 
 ### Node ###
 # Logs

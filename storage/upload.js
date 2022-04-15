@@ -29,7 +29,7 @@ const handleUpload = (data) => {
   updateJSON(images);
 };
 
-const upload = (path, classification) => {
+const upload = async (path, classification) => {
   const options = {
     destination: `drowsiness/${classification}/${randomHash()}.png`,
     public: true,
@@ -40,12 +40,9 @@ const upload = (path, classification) => {
       },
     },
   };
-  bucket
-    .upload(path, options)
-    .then((res) =>
-      handleUpload({ folder: classification, img_ref: res[1].name, media_ref: res[1].mediaLink })
-    )
-    .catch((err) => console.log("error", err));
+  console.log("uploading", path);
+  const res = await bucket.upload(path, options);
+  handleUpload({ folder: classification, img_ref: res[1].name, media_ref: res[1].mediaLink });
   return;
 };
 

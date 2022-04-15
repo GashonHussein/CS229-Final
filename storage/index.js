@@ -9,11 +9,18 @@ const fs = require("fs");
 const { upload } = require("./upload");
 
 const main = (folder) => {
-  const fileNames = fs.readdirSync(path.resolve(__dirname, `assets/${folder}`));
-  fileNames.forEach((file) => {
-    upload(`./assets/${folder}/${file}`, folder);
+  fs.readdir(path.resolve(__dirname, `assets/${folder}`), (err, files) => {
+    files.forEach((file) => {
+      upload(`./assets/${folder}/${file}`, folder);
+    });
   });
 };
 
 // e.g
-main("0");
+(async () => {
+  for (let i = 0; i <= 10; i++) {
+    console.log(i);
+    await main(`${i}`);
+  }
+})();
+// main("1");
