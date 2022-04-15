@@ -8,6 +8,7 @@ const storage = new Storage();
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
 const images = require("./util/images.json");
+let imageList = images;
 
 const randomHash = () => Math.random().toString(36).substring(7);
 
@@ -25,8 +26,8 @@ const handleUpload = (data) => {
   const uri = `https://storage.googleapis.com/${process.env.GCLOUD_STORAGE_BUCKET}/${data.img_ref}`;
 
   console.log({ ...data, uri: uri });
-  images[`classification_${data.folder}`][data.img_reg] = { ...data, uri: uri };
-  updateJSON(images);
+  imageList[`classification_${data.folder}`][data.img_ref] = { ...data, uri: uri };
+  updateJSON(imageList);
 };
 
 const upload = async (path, classification) => {
