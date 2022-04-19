@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
+#training_modal
+storage/shape_predictor_68_face_landmarks.dat
+
 # assets
 storage/assets/
 
