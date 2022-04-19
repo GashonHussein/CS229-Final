@@ -4,7 +4,8 @@
 
 ### get_images_url() (recommended)
 
-`get_images_url(classification)` returns an array of img_ref urls associated with the drowsiness classification argument
+`get_images_url(classification, face_features = True)` returns an array of img_ref urls associated with the drowsiness classification argument
+face_features allows you to get a list of images that have been processed via face landmarks.
 
 ### get_images()
 
