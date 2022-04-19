@@ -5,8 +5,7 @@ import json
 # e.x. get_images_url(2)
 def get_images_url(classification, face_features = True):
     res = get_images(classification, face_features)
-    keys = res.keys()
-    return [res[key].img_ref for key in keys]
+    return [res[key]["uri"] for key in res.keys()]
 
 
 # returns a dict (url, media_ref, and folder) of image frames associated with the drowsiness classification argument
