@@ -11,9 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@google-cloud/storage": "^5.19.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-extract-frames": "^2.0.2",
     "multer": "^1.4.4",
     "request": "^2.88.2",
     "util": "^0.12.4"

@@ -26,13 +26,19 @@ const handleUpload = (data) => {
   const uri = `https://storage.googleapis.com/${process.env.GCLOUD_STORAGE_BUCKET}/${data.img_ref}`;
 
   console.log({ ...data, uri: uri });
-  imageList[`classification_${data.folder}`][data.img_ref] = { ...data, uri: uri };
+  if (imageList["output"] == null) {
+    imageList["output"] = {};
+  }
+  if (imageList["output"][`classification_${data.folder}`] == null) {
+    imageList["output"][`classification_${data.folder}`] = {};
+  }
+  imageList["output"][`classification_${data.folder}`][data.img_ref] = { ...data, uri: uri };
   updateJSON(imageList);
 };
 
 const upload = async (path, classification) => {
   const options = {
-    destination: `drowsiness/${classification}/${randomHash()}.png`,
+    destination: `drowsiness/output/${classification}/${randomHash()}.png`,
     public: true,
     resumable: true,
     metadata: {
