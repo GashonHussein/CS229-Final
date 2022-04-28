@@ -3,7 +3,7 @@ sys.path.append('../storage')
 import get_images
 from get_images import get_images_url
 
-# this function will is called for each image
+# this function is called for each image in the database
 def process_image(image_url):
     print(image_url)
 
