@@ -7,5 +7,8 @@
 ## If you add new dependencies
 `pip3 install -r requirements.txt`
 
+## Write code to handle each image in the database
+Edit code in /util/process_image
+
 ## Testing
 `python3 main.py`
