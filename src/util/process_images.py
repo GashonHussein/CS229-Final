@@ -7,8 +7,8 @@ from get_images import get_images_url
 
 # this function is called for each image in the database
 def process_image(image_url):
-    # # Read
-    # stackColors = io.imread('single_color_test_image.png')
+    # Read
+    stackColors = io.imread('single_color_test_image.png')
     # # Split
     # red_features_matrix = stackColors[:, :, 0]
     # green_features_matrix = stackColors[:, :, 1]
