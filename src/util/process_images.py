@@ -1,5 +1,6 @@
 import sys
 import skimage.io as io
+import numpy as np
 
 sys.path.append('../storage')
 from get_images import get_images_url
@@ -9,14 +10,17 @@ from get_images import get_images_url
 def process_image(image_url):
     # Read
     stackColors = io.imread('single_color_test_image.png')
-    # # Split
-    # red_features_matrix = stackColors[:, :, 0]
-    # green_features_matrix = stackColors[:, :, 1]
-    # blue_features_matrix = stackColors[:, :, 2]
-    # # For CNN Keep channels in place
-    # cnn_features_stack = stackColors[:, :, :3]
-    # # For other models (logistic regression) flatten features/channels
-    # flattened_features = cnn_features_stack.reshape(1, -1)
+    # Split
+    red_features_matrix = stackColors[:, :, 0]
+    green_features_matrix = stackColors[:, :, 1]
+    blue_features_matrix = stackColors[:, :, 2]
+    # For CNN Keep channels in place
+    cnn_features_stack = stackColors[:, :, :3]
+    # For other models (logistic regression) flatten features/channels
+    flattened_features = cnn_features_stack.reshape(1, -1)
+    return flattened_features
+    
+    
 
     # all_samples_stackColors = np.array([])
     # for image_url in image_urls:
@@ -40,8 +44,10 @@ def process_image(image_url):
 def main():
     for i in range(0, 11, 5):
         res = get_images_url(i)
+        all_flattened_features = np.array([])
         for image in res:
-            process_image(image)
+            image_features = process_image(image)
+            all_flattened_features = np.append(all_flattened_features, image_features)
 
 
 if __name__ == "__main__":
