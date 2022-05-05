@@ -42,12 +42,14 @@ def process_image(image_url):
 
 
 def main():
+    all_flattened_features_by_class = np.array([])
     for i in range(0, 11, 5):
         res = get_images_url(i)
-        all_flattened_features = np.array([])
+        curr_flattened_features = np.array([])
         for image in res:
             image_features = process_image(image)
-            all_flattened_features = np.append(all_flattened_features, image_features)
+            curr_flattened_features = np.append(curr_flattened_features, image_features)
+        all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features)
 
 
 if __name__ == "__main__":
