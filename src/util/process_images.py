@@ -4,6 +4,7 @@ import numpy as np
 import json
 import jsonpickle
 from json import JSONEncoder
+import matplotlib.pyplot as plt 
 
 import firebase_admin
 from firebase_admin import credentials
@@ -92,36 +93,29 @@ def main():
     #         curr_flattened_features = np.append(curr_flattened_features, image_features)
     #     all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features)
 
-    # all_flattened_features_by_class = np.array(())
     all_flattened_features_by_class = []
-    # all_flattened_features_by_class = None
     all_flattened_class = None
-    for i in range(0, 11, 5):
+    for i in range(0, 11, 10):
         res = get_images_url(i)
         curr_flattened_features = []
-        n = 5
+        n = 1000
         for j in range(n): # grab n images per classificaiton
             print("processing classification {} image {}".format(i, j))
-            image_features = process_image(res[j], i, data)
-            print(image_fea)
-            curr_flattened_features.append(image_features) # may need to change to regular
-        all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features) 
-        # curr_flattened_features = np.array(curr_flattened_features)
-        # curr_flattened_class = np.full(n,i)
+            image_features = process_image(res[j], i, data)[0]
+            # print("image features", image_features)
+            curr_flattened_features.append(np.array(image_features)) # may need to change to regular
+            # print(type(curr_flattened_features))
         
-        # if all_flattened_features_by_class == None:
-        #     all_flattened_features_by_class = curr_flattened_features
-        #     all_flattened_class = curr_flattened_class
-        # else:
-        #     all_flattened_features_by_class = np.vstack((all_flattened_features_by_class,curr_flattened_features))
-
+        all_flattened_features_by_class.append(curr_flattened_features) 
+   
         # all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features) 
-    print("writing data to ./util/output.json")
-    with open('./util/output.json', 'w') as outfile:
-        json.dump(data, outfile)
+    # print("writing data to ./util/output.json")
+    # with open('./util/output.json', 'w') as outfile:
+    #     json.dump(data, outfile)
     
     logistic_acc_metrics = logistic_regression_full(all_flattened_features_by_class)
     print(logistic_acc_metrics)
+    #plt.show()
     
 
 
@@ -161,6 +155,8 @@ def logistic_regression(all_train_data_input, all_train_data_classification, bat
         db = np.sum(dZ, axis = 1)
         return b - learning_rate * db
     
+    loss_arr = np.array([])
+    
     for curr_epoch in range(epochs):
         for index, train_batch in enumerate(train_batches):
             Y = train_classes[index]
@@ -171,7 +167,8 @@ def logistic_regression(all_train_data_input, all_train_data_classification, bat
             
             W = update_W(dZ, train_batch, W)
             b = update_b(dZ, b)
-            
+        loss_arr = np.append(loss_arr, -np.sum(Y * np.log(A) + (1-Y) * np.log(1 - A)))
+    plt.plot(np.arange(epochs), loss_arr)  
     return W, b
 
 
@@ -228,8 +225,8 @@ def accuracy_calc(Y_hat, Y):
     F1_Score = 2 * precision * recall/(precision + recall)
     accuracy = correct/num_test_examples
     
-    assert incorrect == False_P + False_N
-    assert correct == True_P + True_N
+    # assert incorrect == False_P + False_N
+    # assert correct == True_P + True_N
     
     print("Overall accuracy over " + str(num_test_examples) + " test examples: " + str(accuracy))
     
@@ -243,9 +240,9 @@ def x_y_data_create(all_data):
     num_examples = 0
     
     # Calculate total examples in data
-    print("here", all_data)
+    # print("here", all_data)
     for curr_data in all_data:
-        print(curr_data)
+        # print(curr_data)
         num_examples += len(curr_data)
         
     # Take the classification and re-make data
