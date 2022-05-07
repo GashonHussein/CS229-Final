@@ -4,8 +4,10 @@ if (process.env.NODE_ENV !== "production") {
 const fs = require("fs");
 
 const { Storage } = require("@google-cloud/storage");
-const storage = new Storage();
-const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
+const storage = new Storage({ keyFilename: "./credentials/config.json" });
+const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET || "cs-229-storage-bucket");
+
+const OUTPUT_FOLDER = "reduced"
 
 const images = require("./util/images.json");
 let imageList = images;
@@ -23,22 +25,22 @@ const updateJSON = (images) => {
 };
 
 const handleUpload = (data) => {
-  const uri = `https://storage.googleapis.com/${process.env.GCLOUD_STORAGE_BUCKET}/${data.img_ref}`;
+  const uri = `https://storage.googleapis.com/${process.env.GCLOUD_STORAGE_BUCKET || "cs-229-storage-bucket"}/${data.img_ref}`;
 
   console.log({ ...data, uri: uri });
-  if (imageList["output"] == null) {
-    imageList["output"] = {};
+  if (imageList[OUTPUT_FOLDER] == null) {
+    imageList[OUTPUT_FOLDER] = {};
   }
-  if (imageList["output"][`classification_${data.folder}`] == null) {
-    imageList["output"][`classification_${data.folder}`] = {};
+  if (imageList[OUTPUT_FOLDER][`classification_${data.folder}`] == null) {
+    imageList[OUTPUT_FOLDER][`classification_${data.folder}`] = {};
   }
-  imageList["output"][`classification_${data.folder}`][data.img_ref] = { ...data, uri: uri };
+  imageList[OUTPUT_FOLDER][`classification_${data.folder}`][data.img_ref] = { ...data, uri: uri };
   updateJSON(imageList);
 };
 
 const upload = async (path, classification) => {
   const options = {
-    destination: `drowsiness/output/${classification}/${randomHash()}.png`,
+    destination: `drowsiness/${OUTPUT_FOLDER}/${classification}/${randomHash()}.png`,
     public: true,
     resumable: true,
     metadata: {

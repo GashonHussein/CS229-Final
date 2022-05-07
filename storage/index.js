@@ -26,7 +26,7 @@ const main = async (folder) => {
           if (j == BATCH_SIZE - 1) {
             await upload(`./assets/output/${folder}/${file}`, folder);
           } else {
-            upload(`./assets/output/${folder}/${file}`, folder);
+            upload(`./assets/output/${folder}/${file}`, folder).catch((e) => console.log(e))
           }
         }
       }
