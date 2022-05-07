@@ -26,7 +26,7 @@ def upload_array(query_name, arr, classification, data):
 
     # with open('./util/data.json', 'w') as outfile:
     #     json.dump(data, outfile)
-    print("uploading",query_name)
+    print("uploading", query_name)
     # db.collection('{}'.format(classification)).add({
     #     u'feature_1': arr_str,
     #     u'url': query_name,
@@ -35,7 +35,7 @@ def upload_array(query_name, arr, classification, data):
 # this function is called for each image in the database
 def process_image(image_url, classification, data):
     # Read
-    stackColors = io.imread('single_color_test_image.png')
+    stackColors = io.imread(image_url)
     # Split
     red_features_matrix = stackColors[:, :, 0]
     green_features_matrix = stackColors[:, :, 1]
@@ -45,9 +45,8 @@ def process_image(image_url, classification, data):
     # For other models (logistic regression) flatten features/channels
     flattened_features = cnn_features_stack.reshape(1, -1)
     upload_array(image_url, flattened_features[0], classification, data)
-    return flattened_features[0]
+    return flattened_features
 
-    
     # all_samples_stackColors = np.array([])
     # for image_url in image_urls:
     #     stackColors = io.imread('single_color_test_image.png')
@@ -83,7 +82,7 @@ def test_one(data):
 
 def main():
     data = {"0": {}, "5": {}, "10": {}}
-    print(test_one(data))
+    #print(test_one(data))
     # all_flattened_features_by_class = np.array([])
     # for i in range(0, 11, 5):
     #     res = get_images_url(i)
@@ -92,16 +91,43 @@ def main():
     #         image_features = process_image(image, i, data)
     #         curr_flattened_features = np.append(curr_flattened_features, image_features)
     #     all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features)
-    with open('./util/data.json', 'w') as outfile:
+
+    # all_flattened_features_by_class = np.array(())
+    all_flattened_features_by_class = []
+    # all_flattened_features_by_class = None
+    all_flattened_class = None
+    for i in range(0, 11, 5):
+        res = get_images_url(i)
+        curr_flattened_features = []
+        n = 5
+        for j in range(n): # grab n images per classificaiton
+            print("processing classification {} image {}".format(i, j))
+            image_features = process_image(res[j], i, data)
+            print(image_fea)
+            curr_flattened_features.append(image_features) # may need to change to regular
+        all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features) 
+        # curr_flattened_features = np.array(curr_flattened_features)
+        # curr_flattened_class = np.full(n,i)
+        
+        # if all_flattened_features_by_class == None:
+        #     all_flattened_features_by_class = curr_flattened_features
+        #     all_flattened_class = curr_flattened_class
+        # else:
+        #     all_flattened_features_by_class = np.vstack((all_flattened_features_by_class,curr_flattened_features))
+
+        # all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features) 
+    print("writing data to ./util/output.json")
+    with open('./util/output.json', 'w') as outfile:
         json.dump(data, outfile)
+    
+    logistic_acc_metrics = logistic_regression_full(all_flattened_features_by_class)
+    print(logistic_acc_metrics)
+    
 
 
 if __name__ == "__main__":
     main()
 
-
-"""
-# Logistic Regression Model
 def logistic_regression(all_train_data_input, all_train_data_classification, batch_size, epochs, learning_rate = 0.05, W = None, b = None):
     
     num_examples = np.shape(all_train_data_input)[1]
@@ -217,8 +243,10 @@ def x_y_data_create(all_data):
     num_examples = 0
     
     # Calculate total examples in data
+    print("here", all_data)
     for curr_data in all_data:
-        num_examples += np.shape(curr_data)[0]
+        print(curr_data)
+        num_examples += len(curr_data)
         
     # Take the classification and re-make data
     new_data_with_class = np.array([[]])
@@ -263,5 +291,4 @@ def logistic_regression_full(all_data, train_percent = 0.8):
     
     logistic_loss = NLL_loss_calc(predictions_A, Y_test.T)
     logistic_acc_metrics = accuracy_calc(predictions_Y_hat, Y_test.T)
-
-"""
+    return logistic_acc_metrics
