@@ -81,6 +81,13 @@ def test_one(data):
     upload_array(url, flattened_features[0], 0, data)
     return flattened_features
 
+def total_image_count(arr):
+    total = 0
+    for i in arr:
+        total += len(get_images_url(i))
+    return total
+    
+
 def main():
     data = {"0": {}, "5": {}, "10": {}}
     #print(test_one(data))
@@ -95,15 +102,20 @@ def main():
 
     all_flattened_features_by_class = []
     all_flattened_class = None
-    for i in range(0, 11, 10):
+
+    all_classification = [0, 5, 10]
+    image_count = total_image_count(all_classification)
+    curr_count = 0
+    for i in all_classification:
         res = get_images_url(i)
         curr_flattened_features = []
-        n = 1000
+        n = len(res)
         for j in range(n): # grab n images per classificaiton
-            print("processing classification {} image {}".format(i, j))
+            print("processing classification {} image {} completion: {}%".format(i, j, round(curr_count * 100 / image_count, 3)))
             image_features = process_image(res[j], i, data)[0]
             # print("image features", image_features)
             curr_flattened_features.append(np.array(image_features)) # may need to change to regular
+            curr_count += 1
             # print(type(curr_flattened_features))
         
         all_flattened_features_by_class.append(curr_flattened_features) 
