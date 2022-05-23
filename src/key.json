@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cs229-final-project-347020",
+  "private_key_id": "4278134d54a2c820267ca24a5c36bec174329a12",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDRKQ0GMj9h4mIh\nxIM8er4GuoFyyeXcM/fUq5GGEouk0CBq37ptPyzUcDi/Uq5AIsg0qdINSsZHKEZE\ndAiwsKDJnpc14usJgBIrHtRPoxtkeMGtei00Tvpa/Llqzc35R+7IU/paojpM07jA\n5Ny7qPR3d18SzBBH+kfJhXsslvcrX0Zc1IvwxvVt1N7nd7uPo6isKWT6cfU5nwrt\n71CR4ZrjR/GSvuPYestWZJfiXl7nU/XBps4dZRjjHSCLMY5eZHipCtL9Y2zLLS3s\nEacTdHn/BbW4ExnxX2oLpzIPowvhEc6SiHxbs78z71X8vgrfAovwKd3m/w8EJNho\nnJMtu1aLAgMBAAECggEAMzSuHBi8HK4sISE3kdxo3kPVwjD8hbrxTw8LyvuKVXig\nnxmTzgAb7QxmUCyhPVFmm0ICC0AFp9EL1uFjaUJssr+RPF+H9CT3Dbh3+OExKRlJ\nLTvOilJVh2X8zNGCvicmpcOtdHfn9vwUbKD7CzRTWVYPoA32ZHC5F3SG0cVJ0MOK\nMTUlUp2y1t8RmJEcmmiEy5Y8hxXVn6Sr1GxQWaZ62op1PW2MZ+PcX9asBr6zATBs\nF7T7FWdkZ+GCY5x1Bqc05P0m3XUy7JfxA4QLvekFETiSSEan7mW8biyO3Wxw+MU5\nRQZU2qa6O0pUzWaiSD3e/FwG3yzFylPFYEdT7R563QKBgQD9wSK0WxpT179V3fN0\nFiz/70gNpRUZ2NN9K5wSnvZ+8eR8pKwY/vypAJnoU0QQajlpzDC/Fk8z902OP7AM\nk8xF3juKPb2HOrEbt33B74vqfc5FucAkHE66rc9DsvqyI0i4+2Qj9CkhqDtpGee8\ne03sT889ja6Kzh6jRAqrTYcRpQKBgQDTAuPpD1Pg9fyjFy3stejRgLP+UeL39oSb\nhPEL9eOLzrZDD/+ZtQ3FORAaVdmyw3ol9+rLGz7vZELczD0B35aiTY6smN/2DMPg\nsBLDGYJZZThe7mzecMP1CcoY0fVeuV7iENNvsSS5hADUeGPku7r0TJhCXfaZXdk3\nq8hZ3yDwbwKBgQCSbLUS75MEmHUvHlESRo2W7cNdJEpFzOlUzCpWUGYaoIhhKECq\nd9Dh0Jf/CLU456LTmuDyEvSHHwggsj1rNInmMzOWNMQ92S9DuCEYHJtXJ1s0vtfR\nvofrjsoP3aJt0pBvNZj2ajil1EbcAffHujsfxnnmoe/65q+lNGkXqjfrhQKBgQCi\nE+9Bnd9cxTVHhE9nKZbqDQS0TOuccQMMfcG04SrlwWJoAore4p3wJlODFvw/fjx9\nm38CgSwHLyjYdhxKKxaGFjKHymkEkmuGU1gl+ZsQ1VnGOTbwaQdrWRidle/10Ubb\nN/dgLF28DXOhv9Ni5vvEGG0/VPNMfDSTuWQL/AJOCwKBgAJJn2krMGrpBbHAomMr\nnKYsBknxytgtbSy8uxGZ5iAlAOy87W+gibtixkGnsT9OM0vkwxWM36LkHZhfYfMO\nRa9DYeu6W0JgEK69PjEv1xs6w8HE50bhj648UA6AXWT0CFcrvWB7hysHB/FVsK45\nlNHg89BMpr5N1HyHx9JG+H+o\n-----END PRIVATE KEY-----\n",
+  "client_email": "tensorflow@cs229-final-project-347020.iam.gserviceaccount.com",
+  "client_id": "113315087203990371760",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tensorflow%40cs229-final-project-347020.iam.gserviceaccount.com"
+}
