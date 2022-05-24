@@ -12,6 +12,7 @@ from firebase_admin import firestore
 
 sys.path.append('../storage')
 from get_images import get_images_url
+from augment_data import augment_data
 
 # Use the application default credentials
 cred = credentials.Certificate("./util/service-account.json")
@@ -103,7 +104,7 @@ def main():
     all_flattened_features_by_class = []
     all_flattened_class = None
 
-    all_classification = [0, 5, 10]
+    all_classification = [0, 10]
     image_count = total_image_count(all_classification)
     curr_count = 0
     for i in all_classification:
@@ -124,7 +125,7 @@ def main():
     # print("writing data to ./util/output.json")
     # with open('./util/output.json', 'w') as outfile:
     #     json.dump(data, outfile)
-    
+
     logistic_acc_metrics = logistic_regression_full(all_flattened_features_by_class)
     print(logistic_acc_metrics)
     #plt.show()
@@ -277,6 +278,14 @@ def x_y_data_create(all_data):
         
 # Full logistic regression model output given just the data (optionally percent of data to train on)
 def logistic_regression_full(all_data, train_percent = 0.8):
+    print("augmenting data")
+    try: 
+        all_data = augment_data(all_data)
+        print(f'AFTER AUGMENTATION\nclass 0: {len(all_data[0])}\nclass 10: {len(all_data[1])}')
+    except: 
+        print("error w/ augmentation")
+        return None
+
     X, Y = x_y_data_create(all_data)
     
     # Calc number of examples for training and rest for testing
