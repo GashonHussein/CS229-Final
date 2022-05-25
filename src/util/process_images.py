@@ -109,11 +109,10 @@ def main():
     all_classification = [0, 10]
     image_count = total_image_count(all_classification)
     curr_count = 0
-    n = 1000
     for i in all_classification:
         res = get_images_url(i)
         curr_flattened_features = []
-        # n = len(res)
+        n = len(res)
         for j in range(n): # grab n images per classificaiton
             print("processing classification {} image {} completion: {}%".format(i, j, round(curr_count * 100 / image_count, 3)))
             image_features = process_image(res[j], i, data)[0]
@@ -121,7 +120,6 @@ def main():
             curr_flattened_features.append(np.array(image_features)) # may need to change to regular
             curr_count += 1
             # print(type(curr_flattened_features))
-        n-=5
         all_flattened_features_by_class.append(curr_flattened_features) 
    
         # all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features) 
