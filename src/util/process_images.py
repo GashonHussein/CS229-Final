@@ -1,9 +1,11 @@
+
 import sys
 import skimage.io as io
 import numpy as np
 import json
 import jsonpickle
 from json import JSONEncoder
+import random
 import matplotlib.pyplot as plt 
 
 import firebase_admin
@@ -107,10 +109,11 @@ def main():
     all_classification = [0, 10]
     image_count = total_image_count(all_classification)
     curr_count = 0
+    n = 1000
     for i in all_classification:
         res = get_images_url(i)
         curr_flattened_features = []
-        n = len(res)
+        # n = len(res)
         for j in range(n): # grab n images per classificaiton
             print("processing classification {} image {} completion: {}%".format(i, j, round(curr_count * 100 / image_count, 3)))
             image_features = process_image(res[j], i, data)[0]
@@ -118,7 +121,7 @@ def main():
             curr_flattened_features.append(np.array(image_features)) # may need to change to regular
             curr_count += 1
             # print(type(curr_flattened_features))
-        
+        n-=5
         all_flattened_features_by_class.append(curr_flattened_features) 
    
         # all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features) 
@@ -279,12 +282,10 @@ def x_y_data_create(all_data):
 # Full logistic regression model output given just the data (optionally percent of data to train on)
 def logistic_regression_full(all_data, train_percent = 0.8):
     print("augmenting data")
-    try: 
-        all_data = augment_data(all_data)
-        print(f'AFTER AUGMENTATION\nclass 0: {len(all_data[0])}\nclass 10: {len(all_data[1])}')
-    except: 
-        print("error w/ augmentation")
-        return None
+    print(all_data[0][0].shape)
+    all_data = augment_data(all_data)
+    print(f'AFTER AUGMENTATION\nclass 0: {len(all_data[0])}\nclass 10: {len(all_data[1])}')
+
 
     X, Y = x_y_data_create(all_data)
     

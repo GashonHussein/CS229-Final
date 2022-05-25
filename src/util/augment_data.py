@@ -1,14 +1,12 @@
+
 import numpy as np
 
 
 def flip_data(example):
     copy_example = np.copy(example)
-    pixels = np.shape(example)[1]/3
     
-    assert (pixels ** 0.5)%1 == 0
-    
-    rows = int(pixels ** 0.5)
-    cols = int(rows)
+    rows = 120
+    cols = 90
     
     reshaped_example = np.reshape(copy_example, (rows, cols, 3))
     
@@ -45,3 +43,7 @@ def augment_data(all_data):
         all_data[1].append(example_copy)
         
     return all_data
+
+
+
+
