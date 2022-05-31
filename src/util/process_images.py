@@ -1,9 +1,11 @@
+
 import sys
 import skimage.io as io
 import numpy as np
 import json
 import jsonpickle
 from json import JSONEncoder
+import random
 import matplotlib.pyplot as plt 
 
 import firebase_admin
@@ -12,6 +14,7 @@ from firebase_admin import firestore
 
 sys.path.append('../storage')
 from get_images import get_images_url
+from augment_data import augment_data
 
 # Use the application default credentials
 cred = credentials.Certificate("./util/service-account.json")
@@ -81,6 +84,13 @@ def test_one(data):
     upload_array(url, flattened_features[0], 0, data)
     return flattened_features
 
+def total_image_count(arr):
+    total = 0
+    for i in arr:
+        total += len(get_images_url(i))
+    return total
+    
+
 def main():
     data = {"0": {}, "5": {}, "10": {}}
     #print(test_one(data))
@@ -95,24 +105,28 @@ def main():
 
     all_flattened_features_by_class = []
     all_flattened_class = None
-    for i in range(0, 11, 10):
+
+    all_classification = [0, 10]
+    image_count = total_image_count(all_classification)
+    curr_count = 0
+    for i in all_classification:
         res = get_images_url(i)
         curr_flattened_features = []
-        n = 1000
+        n = len(res)
         for j in range(n): # grab n images per classificaiton
-            print("processing classification {} image {}".format(i, j))
+            print("processing classification {} image {} completion: {}%".format(i, j, round(curr_count * 100 / image_count, 3)))
             image_features = process_image(res[j], i, data)[0]
             # print("image features", image_features)
             curr_flattened_features.append(np.array(image_features)) # may need to change to regular
+            curr_count += 1
             # print(type(curr_flattened_features))
-        
         all_flattened_features_by_class.append(curr_flattened_features) 
    
         # all_flattened_features_by_class = np.append(all_flattened_features_by_class, curr_flattened_features) 
     # print("writing data to ./util/output.json")
     # with open('./util/output.json', 'w') as outfile:
     #     json.dump(data, outfile)
-    
+
     logistic_acc_metrics = logistic_regression_full(all_flattened_features_by_class)
     print(logistic_acc_metrics)
     #plt.show()
@@ -265,6 +279,12 @@ def x_y_data_create(all_data):
         
 # Full logistic regression model output given just the data (optionally percent of data to train on)
 def logistic_regression_full(all_data, train_percent = 0.8):
+    print("augmenting data")
+    print(all_data[0][0].shape)
+    all_data = augment_data(all_data)
+    print(f'AFTER AUGMENTATION\nclass 0: {len(all_data[0])}\nclass 10: {len(all_data[1])}')
+
+
     X, Y = x_y_data_create(all_data)
     
     # Calc number of examples for training and rest for testing

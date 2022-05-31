@@ -1,20 +1,30 @@
+
 import numpy as np
 
-def flip_data_cnn(example):
-    example_copy = np.copy(example)
-    flipped_example = np.flip(example_copy, axis = 1)
-    
-    return flipped_example
 
-def augment_data_cnn(all_data):
+def flip_data(example):
+    copy_example = np.copy(example)
+    
+    rows = 120
+    cols = 90
+    
+    reshaped_example = np.reshape(copy_example, (rows, cols, 3))
+    
+    flipped_reshaped_example = np.flip(reshaped_example, axis = 1)
+        
+    return flipped_reshaped_example.reshape(1, -1)
+    
+
+def augment_data(all_data):
     class_0_amount = len(all_data[0])
     class_1_amount = len(all_data[1])
+    print(f'class 0: {class_0_amount}\nclass 10: {class_1_amount}')
     
     modify_index = 0
     
     while modify_index < class_1_amount and len(all_data[1]) < class_0_amount:
         curr_example = all_data[1][modify_index]
-        new_example = flip_data_cnn(curr_example)
+        new_example = flip_data(curr_example)
         
         all_data[1].append(new_example)
         
@@ -33,3 +43,7 @@ def augment_data_cnn(all_data):
         all_data[1].append(example_copy)
         
     return all_data
+
+
+
+

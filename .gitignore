@@ -8,6 +8,10 @@ storage/shape_predictor_68_face_landmarks.dat
 # assets
 storage/assets/
 
+#env
+env/
+env/bin
+
 ### Node ###
 # Logs
 logs
