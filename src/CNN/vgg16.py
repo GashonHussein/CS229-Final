@@ -3,14 +3,32 @@ import numpy as np, tensorflow as tf
 import pathlib
 from keras.applications.vgg16 import VGG16
 from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.python.lib.io import file_io
+import tensorflow_cloud as tfc
+import tensorflow_datasets as tfds
 # from storage.get_images import *
 
 ###Follow the tutorial:https://www.tensorflow.org/tutorials/load_data/images###
 
 
 def data_preprocess(dataset_url):
+
+    # (ds_train, ds_test), metadata = tfds.load(
+    # dataset,
+    # split=["train", "test"],
+    # shuffle_files=True,
+    # with_info=True,
+    # as_supervised=True,
+    # )
+ 
+    # NUM_CLASSES = metadata.features["label"].num_classes
+
+    # print(ds_train)
+    # image = dataset_url.read()
+    # print(image)
+
     data_dir = tf.keras.utils.get_file(origin=dataset_url,
-                                    fname='drowsiness',
+                                    fname='images',
                                     untar=True)
     data_dir = pathlib.Path(data_dir)
     print(data_dir)
@@ -18,7 +36,7 @@ def data_preprocess(dataset_url):
     image_count = len(list(data_dir.glob('*/*.png')))
     print("Total number of images:", image_count)
 
-    batch_size = 32
+    # batch_size = 32
     img_height = 180
     img_width = 180
 
@@ -28,7 +46,7 @@ def data_preprocess(dataset_url):
     subset="training",
     seed=123,
     image_size=(img_height, img_width),
-    batch_size=batch_size)
+    batch_size=60)
 
     val_ds = tf.keras.utils.image_dataset_from_directory(
     data_dir,
@@ -36,12 +54,21 @@ def data_preprocess(dataset_url):
     subset="validation",
     seed=123,
     image_size=(img_height, img_width),
-    batch_size=batch_size)
+    batch_size=60)
+
+    print(train_ds)
+    class_names = train_ds.class_names
+    print("class list",class_names)
+
+    for image_batch, labels_batch in train_ds:
+        print(image_batch.shape)
+        print(labels_batch.shape)
+        break
 
     return train_ds, val_ds
     
-def model_build(VGG16):
-    if VGG16:   
+def model_build(VGG):
+    if VGG:   
         vggmodel = VGG16(weights='imagenet', include_top=True)
         X = vggmodel.layers[-2].output
         predictions = tf.keras.layers.Dense(2,activation='softmax')(X)
@@ -64,8 +91,10 @@ def model_build(VGG16):
     return model
 
 def main(VGG16):
-    dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
-    # dataset_url = "https://storage.googleapis.com/cs-229-storage-bucket/drowsiness/raw"
+    # dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
+    dataset_url = "https://storage.googleapis.com/cs-229-storage-bucket/production/raw_images.tgz"
+   
+    # dataset = file_io.FileIO("gs://cs-229-storage-bucket/drowsiness/raw/0", mode='r')
 
     train_ds, val_ds = data_preprocess(dataset_url)
     
@@ -82,5 +111,5 @@ def main(VGG16):
     epochs=3)
 
 if __name__ == "__main__":
-    VGG16 = True # use VGG16 or self-defined CNN
-    main(True)
+    VGG = False # use VGG16 or self-defined CNN
+    main(VGG)
